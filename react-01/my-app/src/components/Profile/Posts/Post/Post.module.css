@@ -1,4 +1,4 @@
-.post {
+.post__content {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -6,7 +6,11 @@
   margin-left: 10px;
 }
 
-.post>img {
+.post__content>img {
   width: 80px;
   border-radius: 50%;
+}
+
+span {
+  margin-left: 10px;
 }
