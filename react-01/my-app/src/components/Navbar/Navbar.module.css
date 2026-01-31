@@ -8,11 +8,12 @@
   gap: 10px;
 }
 
-a {
+.link {
   text-decoration: none;
   color: white;
 }
 
 .active {
+  text-decoration: none;
   color: gold;
 }
