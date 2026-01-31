@@ -1,0 +1,17 @@
+.info {
+
+}
+
+.info img {
+  width: 100%;
+  height: 200px;
+}
+
+.profile__desc {
+
+}
+
+.profile__desc>img {
+  width: 200px;
+  padding-left: 10px;
+}
