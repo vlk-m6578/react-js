@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="content-wrapper">
@@ -17,8 +17,8 @@ function App() {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route  path='/profile' element={<Profile />} />
-            <Route path='/messages' element={<Dialogs />} />
+            <Route path='/profile' element={<Profile posts={props.posts} />} />
+            <Route path='/messages' element={<Dialogs dialogs={props.dialogs} messages={props.messages} />} />
             <Route path='/news' element={<News />}/>
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
