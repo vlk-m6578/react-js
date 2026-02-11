@@ -26,7 +26,12 @@ let state = {
   }
 }
 
+// H/W
+
 // добавить friends в sidebar
-// сверстать на странице Messages аватарки у людей и аватарки у сообщений
+// сверстать на странице Messages аватарки у людей и аватарки у сообщений 
+
+// добавить textarea в Messages и кнопку Add
+// та же работа с ref
 
 export default state;

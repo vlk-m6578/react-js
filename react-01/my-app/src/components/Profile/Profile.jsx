@@ -1,4 +1,4 @@
-import Posts from './Posts/Posts';
+import Posts from './Posts/Posts.jsx';
 import c from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 

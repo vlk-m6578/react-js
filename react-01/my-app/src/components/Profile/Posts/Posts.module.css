@@ -1,3 +1,11 @@
+.postsBlock {
+
+}
+
+.postsBlock textarea {
+  resize: none;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
