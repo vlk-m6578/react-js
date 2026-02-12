@@ -6,3 +6,11 @@
 .dialogs__list {
   padding: 10px;
 }
+
+.add {
+
+}
+
+.add textarea {
+  resize: none;
+}

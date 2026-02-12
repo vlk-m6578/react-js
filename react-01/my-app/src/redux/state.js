@@ -26,12 +26,20 @@ let state = {
   }
 }
 
+// нарушение чистой функции -> state глобальный
+export let addPost = (postMessage) => {
+  debugger;
+  let newPost = {
+    id: 5,
+    message: postMessage,
+    count: 0
+  };
+  state.profilePage.posts.push(newPost);
+}
+
 // H/W
 
 // добавить friends в sidebar
 // сверстать на странице Messages аватарки у людей и аватарки у сообщений 
-
-// добавить textarea в Messages и кнопку Add
-// та же работа с ref
 
 export default state;
