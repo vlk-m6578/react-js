@@ -1,4 +1,4 @@
-
+import { rerenderEntireTree } from "../render";
 let state = {
   profilePage: {
     posts: [
@@ -27,14 +27,14 @@ let state = {
 }
 
 // нарушение чистой функции -> state глобальный
-export let addPost = (postMessage) => {
-  debugger;
+export let addPost = (postMessage) => {   
   let newPost = {
     id: 5,
     message: postMessage,
     count: 0
   };
   state.profilePage.posts.push(newPost);
+  rerenderEntireTree(state);
 }
 
 // H/W
