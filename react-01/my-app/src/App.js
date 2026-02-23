@@ -23,7 +23,7 @@ function App(props) {
             <Route path='/news' element={<News />}/>
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/' element={<Profile state={props.state.profilePage} />}/>
+            <Route path='/' element={<Profile profilePage={props.state.profilePage} />}/>
           </Routes>
           {/* <Dialogs /> */}
         </div>
