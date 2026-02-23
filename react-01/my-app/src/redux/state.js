@@ -21,7 +21,8 @@ let state = {
       { id: 2, message: 'How are you?' },
       { id: 3, message: 'Wow!' },
       { id: 4, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, illum!' }
-    ]
+    ],
+    newMessageText: 'Hello! How are you?'
   },
   sidebar: {
 
@@ -29,6 +30,11 @@ let state = {
 }
 
 window.state = state;
+
+export let updateNewMessageText = (newMessage) => {
+  state.dialogsPage.newMessageText = newMessage;
+  rerenderEntireTree(state);
+}
 
 export let updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
@@ -41,6 +47,7 @@ export let addMessage = (message) => {
     message: message
   };
   state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText = '';
   rerenderEntireTree(state);
 }
 
@@ -57,8 +64,6 @@ export let addPost = () => {
 }
 
 // H/W
-
-// проделать ту же работу с dialogs
 
 // добавить friends в sidebar
 // сверстать на странице Messages аватарки у людей и аватарки у сообщений 
