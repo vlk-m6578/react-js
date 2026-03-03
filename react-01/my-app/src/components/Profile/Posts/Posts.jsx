@@ -8,6 +8,7 @@ const Posts = (props) => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
+    debugger;
     props.addPost();
   }
 
