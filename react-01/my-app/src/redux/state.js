@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 let store = {
   _state: {
     profilePage: {
@@ -65,10 +68,12 @@ let store = {
   }
 }
 
-// H/W
+export const addPostActionCreator = () => ({ type: ADD_POST })
 
-// добавить friends в sidebar
-// сверстать на странице Messages аватарки у людей и аватарки у сообщений 
+export const updateNewPostTextActionCreator = (text) => ({
+  type: UPDATE_NEW_POST_TEXT,
+  newText: text
+})
 
 export default store;
 window.store = store;
