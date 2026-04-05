@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
@@ -17,6 +17,7 @@ function App(props) {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
+            <Route path='/' element={<Navigate to='/profile' replace />} />
             <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost = {props.addPost} updateNewPostText={props.updateNewPostText} />} />
             <Route path='/messages' element={<Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage} updateNewMessageText={props.updateNewMessageText} />} />
             <Route path='/news' element={<News />}/>

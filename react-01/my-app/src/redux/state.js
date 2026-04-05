@@ -28,14 +28,12 @@ let store = {
     }
   },
   getState() {
-    debugger;
     return this._state;
   },
   _callSubscriber() {
     console.log('State changed');
   },
   addPost() {
-    debugger;
     let newPost = {
       id: 5,
       message: this._state.profilePage.newPostText,

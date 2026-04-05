@@ -16,9 +16,7 @@ const Navbar = () => {
       <NavLink to='/music' className={({ isActive }) => {
         return isActive ? `${c.active}` : `${c.link}`;
       }} >Music</NavLink>
-      <NavLink to='/settings' className={({ isActive }) => {
-        return isActive ? `${c.active}` : `${c.link}`
-      }} >Settings</NavLink>
+      <NavLink to='/settings' className={object => object.isActive ? `${c.link} ${c.active}` : c.link}>Settings</NavLink>
     </nav>
   );
 }
