@@ -7,10 +7,6 @@
   padding: 10px;
 }
 
-.add {
-
-}
-
-.add textarea {
+textarea {
   resize: none;
 }
