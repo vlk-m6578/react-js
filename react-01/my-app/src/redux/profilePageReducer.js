@@ -1,5 +1,7 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+// const ADD_POST = 'ADD-POST';
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+import { createSlice } from "@reduxjs/toolkit"
 
 let initialState = {
   posts: [
@@ -10,37 +12,59 @@ let initialState = {
   newPostText: "aboba"
 }
 
-const profilePageReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_POST:
-      let newPost = {
+// const profilePageReducer = (state=initialState, action) => {
+//   switch (action.type) {
+//     case ADD_POST:
+//       let newPost = {
+//         id: 5,
+//         message: state.newPostText,
+//         count: 0
+//       };
+//       // state.posts.push(newPost);
+//       // state.newPostText = '';
+//       return {
+//         ...state,
+//         posts: [...state.posts, newPost],
+//         newPostText: ''
+//       }
+//     case UPDATE_NEW_POST_TEXT:
+//       // state.newPostText = action.newText;
+//       return {
+//         ...state,
+//         newPostText: action.newText
+//       }
+//     default:
+//       return state;
+//   }
+// }
+
+// export const addPostActionCreator = () => ({ type: ADD_POST })
+
+// export const updateNewPostTextActionCreator = (text) => ({
+//   type: UPDATE_NEW_POST_TEXT,
+//   newText: text
+// })
+
+// export default profilePageReducer;
+
+let profilePageReducer = createSlice({
+  name: 'profile',
+  initialState,
+  reducers: {
+    addPost: (state, action) => {
+      const newPost = {
         id: 5,
         message: state.newPostText,
-        count: 0
-      };
-      // state.posts.push(newPost);
-      // state.newPostText = '';
-      return {
-        ...state,
-        posts: [...state.posts, newPost],
-        newPostText: ''
-      };
-    case UPDATE_NEW_POST_TEXT:
-      // state.newPostText = action.newText;
-      return {
-        ...state,
-        newPostText: action.newText   
-      };
-    default:
-      return state;
+        likesCount: 0
+      } 
+      state.posts.push(newPost);
+      state.newPostText = '';
+    },
+    updateNewPostText: (state, action) => {
+      state.newPostText = action.payload;
+    }
   }
-}
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-
-export const updateNewPostTextActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newText: text
 })
 
-export default profilePageReducer;
+export default profilePageReducer.reducer;
+export const {addPost, updateNewPostText} = profilePageReducer.actions;
