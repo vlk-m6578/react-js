@@ -4,9 +4,9 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.dialogsPage.dialogs.map(d => <Dialog id={d.id} name={d.name} />);
+  let dialogsElements = props.dialogsPage.dialogs.map(d => <Dialog id={d.id} name={d.name} key={d.id} />);
 
-  let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} />);
+  let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id} />);
 
   let onAddMessage = () => {
     // props.dispatch(addMessageActionCreator());

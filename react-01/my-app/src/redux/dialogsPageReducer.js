@@ -17,7 +17,7 @@ let initialState = {
   newMessageText: ''
 }
 
-const dialogsPageReducer = (state=initialState, action) => {
+const dialogsPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       let newMessage = {
