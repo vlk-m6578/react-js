@@ -1,10 +1,10 @@
 import PostsContainer from './Posts/PostsContainer.jsx';
-import c from './Profile.module.css';
+import styles from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
   return (
-    <div className={c.profile}>
+    <div className={styles.profile}>
       <ProfileInfo />
       <PostsContainer  />
     </div>

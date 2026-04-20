@@ -1,8 +1,8 @@
-import c from './News.module.css';
+import styles from './News.module.css';
 
 const News = () => {
   return(
-    <div className={c.news}>
+    <div className={styles.news}>
       News
     </div>
   );

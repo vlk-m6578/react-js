@@ -1,4 +1,4 @@
-import c from './Dialogs.module.css';
+import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 
@@ -20,11 +20,11 @@ const Dialogs = (props) => {
   }
 
   return (
-    <div className={c.dialogs}>
-      <div className={c.dialogs__list}>
+    <div className={styles.dialogs}>
+      <div className={styles.dialogs__list}>
         {dialogsElements}
       </div>
-      <div className={c.messages}>
+      <div className={styles.messages}>
         {messagesElements}
         <div>
           <textarea onChange={onMessageChange} value={props.dialogsPage.newMessageText}></textarea>
