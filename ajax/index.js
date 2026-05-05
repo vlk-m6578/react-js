@@ -1,6 +1,7 @@
-const resultBlock = document.querySelector("#result");
+const resultBlock = document.querySelector("#tasks-result");
 const clickMeButton = document.querySelector("#click-me");
 const textInput = document.querySelector("#input-text");
+const getTasksButton = document.querySelector("#get-tasks");
 
 clickMeButton.addEventListener("click", () => {
   // const promise = getApis(pageNumber.value);
@@ -11,7 +12,26 @@ clickMeButton.addEventListener("click", () => {
 
   const promise = getJoke();
   promise.then(onRandomJokeReceived);
+
 });
+
+getTasksButton.addEventListener("click", () => {
+  const promise = getTasks();
+  promise.then(onTasksReceived);
+});
+
+createTask("learn React").then((data) => {
+  debugger;
+  console.log(data)
+})
+
+function onTasksReceived(data) {
+  data.results.forEach(el => {
+    const li = document.createElement('li');
+    li.innerHTML = el.content;
+    resultBlock.appendChild(li);
+  })
+}
 
 // function onApisReceived(data) {
 //   data.data.forEach(el => {

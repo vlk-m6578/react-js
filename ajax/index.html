@@ -4,10 +4,31 @@
   }
 </style>
 
-<button id="click-me">ClickMe</button>
+<button id="click-me">Get Images</button>
 Enter type: <input type="text" value="" id="input-text">
 
-<div id="result"></div>
+<button id="get-tasks">Get Tasks</button>
+
+<ul id="tasks-result"></ul>
+
+<!-- <script>
+  let a = doItAfter(4);
+  a
+    .then(() => console.log('first'))
+    .then(() => console.log('second'))
+    .catch(()=> console.log('ERROR'))
+
+  function doItAfter(seconds) {
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, seconds * 1000);
+    })
+
+    return promise;
+  }
+
+</script> -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
