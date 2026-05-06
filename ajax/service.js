@@ -49,3 +49,11 @@ function createTask(title) {
     return response.data;
   })
 }
+
+function getApis(page, limit) {
+  const promise = axios.get(`https://api.artic.edu/api/v1/artworks?page=${page}&limit=${limit}`);
+
+  return promise.then((response)=> {
+    return response.data;
+  })
+}
