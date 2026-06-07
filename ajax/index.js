@@ -6,6 +6,7 @@ const textInput = document.querySelector("#input-text");
 const numberInput = document.querySelector("#input-number");
 const getTasksButton = document.querySelector("#get-tasks");
 const getApisButton = document.querySelector("#get-apis");
+const userId = document.querySelector("#input-userId");
 
 clickMeButton.addEventListener("click", () => {
   // const promise = getApis(pageNumber.value);
@@ -21,24 +22,26 @@ clickMeButton.addEventListener("click", () => {
 
 });
 
-getTasksButton.addEventListener("click", () => {
-  const promise = getTasks();
-  promise.then(onTasksReceived);
-});
-
 getApisButton.addEventListener("click", () => {
   const promise = getApis(1, numberInput.value);
   promise.then(onApisReceived)
 })
 
-createTask("learn React").then((data) => {
-  console.log(data)
-})
+getTasksButton.addEventListener("click", () => {
+  getTasks(userId.value).then(onTasksReceived);
+});
+
+createTask('learn HTML', false, 1);
+
+updateTask(47, true);
+
+deleteTask(47);
 
 function onTasksReceived(data) {
-  data.results.forEach(el => {
-    const li = document.createElement('li');
-    li.innerHTML = el.content;
+  data.todos.forEach(el => {
+    const li = document.createElement("li");
+    li.innerHTML = el.todo + '(' + el.completed +')';
+    li.dataset.id = el.id;
     resultBlock.appendChild(li);
   })
 }
@@ -71,8 +74,6 @@ function onRandomDogReceived(data) {
 }
 
 function onRandomJokeReceived(data) {
-
-
   const h1 = document.createElement('h1');
   h1.innerHTML = data.setup;
   const p = document.createElement('p');

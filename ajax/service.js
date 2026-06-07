@@ -17,43 +17,40 @@ function getJoke() {
   })
 }
 
-const myToken = '87e12c770e3f25918b9794c35a2c4853d3afdf1e';
-
-function getTasks() {
-  const promise = axios.get("https://api.todoist.com/api/v1/tasks", {
-    params: {
-      since: "2025-02-01T00:00:00Z",
-      until: "2025-02-28T23:59:59Z"
-    },
-    headers: {
-      "Authorization": `Bearer ${myToken}`
-    }
-  });
-  return promise.then((response) => {
-    return response.data;
-  })
-}
-
-function createTask(title) {
-  const promise = axios.post("https://api.todoist.com/api/v1/tasks/quick", {
-    text: title,
-    reminder: "friday",
-    meta: true
-  },
-    {
-      headers: {
-        "Authorization": `Bearer ${myToken}`
-      }
-    })
-  return promise.then((response) => {
-    return response.data;
-  })
-}
-
 function getApis(page, limit) {
   const promise = axios.get(`https://api.artic.edu/api/v1/artworks?page=${page}&limit=${limit}`);
 
-  return promise.then((response)=> {
+  return promise.then((response) => {
+    return response.data;
+  })
+}
+
+function getTasks(userId) {
+  return axios.get(`https://dummyjson.com/todos/user/${userId}`).then((response) => {
+    return response.data;
+  })
+}
+
+function createTask(todo, completed, userId) {
+  return axios.post(`https://dummyjson.com/todos/add`, {
+    todo: todo,
+    completed: completed,
+    userId: userId
+  }).then((response) => {
+    return response.data;
+  })
+}
+
+function updateTask(taskId, completed) {
+  return axios.put(`https://dummyjson.com/todos/${taskId}`, {
+    completed
+  }).then((response) => {
+    return response.data;
+  })
+}
+
+function deleteTask(taskId) {
+  return axios.delete(`https://dummyjson.com/todos/${taskId}`).then((response) => {
     return response.data;
   })
 }
