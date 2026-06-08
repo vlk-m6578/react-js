@@ -4,15 +4,16 @@ import defaultUserPhoto from './../../static/img/default-user.jpg';
 
 const Users = (props) => {
 
-  if (props.users.length === 0) {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users", {
-      headers: "5e7dd553-5bf1-4358-a7da-f911b59ef309"
-    }).then(response => {
-      debugger;
-      props.setUsers(response.data.items);
-    })
+  let getUsers = () => {
+    if (props.users.length === 0) {
+      axios.get("https://social-network.samuraijs.com/api/1.0/users", {
+        headers: "5e7dd553-5bf1-4358-a7da-f911b59ef309"
+      }).then(response => {
+        // debugger;
+        props.setUsers(response.data.items);
+      })
+    }
   }
-
 
   // if (props.users.length === 0) {
   //   props.setUsers(
@@ -30,6 +31,7 @@ const Users = (props) => {
   return (
     <div>
       <h3>Users</h3>
+      <button onClick={getUsers}>Get users</button>
       {
         props.users.map(u =>
           <div>
