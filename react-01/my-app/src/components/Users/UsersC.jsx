@@ -4,8 +4,8 @@ import defaultUserPhoto from './../../static/img/default-user.jpg';
 import React from 'react';
 
 class UsersC extends React.Component {
-  constructor(props) {
-    super(props);
+
+  componentDidMount() {
     axios.get("https://social-network.samuraijs.com/api/1.0/users", {
       headers: "5e7dd553-5bf1-4358-a7da-f911b59ef309"
     }).then(response => {
