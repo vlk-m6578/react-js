@@ -9,7 +9,7 @@ const Users = (props) => {
       axios.get("https://social-network.samuraijs.com/api/1.0/users", {
         headers: "5e7dd553-5bf1-4358-a7da-f911b59ef309"
       }).then(response => {
-        // debugger;
+        debugger;
         props.setUsers(response.data.items);
       })
     }
