@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 function App(props) {
   return (
@@ -22,7 +23,7 @@ function App(props) {
         <div className='app-wrapper-content'>
           <Routes>
             <Route path='/' element={<Navigate to='/profile' replace />} />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile/*' element={<ProfileContainer />} />
             <Route path='/messages' element={<DialogsContainer />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />

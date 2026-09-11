@@ -1,6 +1,6 @@
-// import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profilePageReducer';  
+import { addPost, updateNewPostText } from '../../../redux/profilePageReducer';  
 import { connect } from 'react-redux';
-import { addPost, updateNewPostText } from '../../../redux/profilePageReducer';
+// import { addPost, updateNewPostText } from '../../../redux/profilePageReducer';
 import Posts from './Posts';
 
 let mapStateToProps = (state) => {
