@@ -23,7 +23,7 @@ function App(props) {
         <div className='app-wrapper-content'>
           <Routes>
             <Route path='/' element={<Navigate to='/profile' replace />} />
-            <Route path='/profile/:userId' element={<ProfileContainer />} />
+            <Route path='/profile/:userId?' element={<ProfileContainer />} />
             <Route path='/messages' element={<DialogsContainer />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
