@@ -1,5 +1,5 @@
 
-function App() {
+export function App() {
 
   const tracks = [
     { id: 1, title: 'Musicfan soundtrack', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
@@ -25,4 +25,4 @@ function App() {
   )
 }
 
-export default App
+export const name = 'AppFileComponent';
