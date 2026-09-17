@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 
 // const tasks = null;
@@ -41,6 +42,8 @@ const tasks = [
 
 export function App() {
 
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
+
   const getTaskColorPriority = (priority) => {
     switch (priority) {
       case 0:
@@ -68,10 +71,12 @@ export function App() {
 
   return (
     <div className='app-tasks'>
+      <button onClick={() => {setSelectedTaskId(null)}}>Сбросить выделение</button>
       {
         tasks.map(task => {
           return (
-            <div className='app-task' style={{ background: getTaskColorPriority(task.priority) }}>
+            <div onClick={() => setSelectedTaskId(task.id)} className='app-task' style={{ background: getTaskColorPriority(task.priority), 
+                border: selectedTaskId === task.id ? '5px solid blue' : 'none'}}>
               <strong>Заголовок: </strong> <span style={{ textDecorationLine: task.isDone ? 'line-through' : 'none' }}>{task.title}</span> <br></br>
               <strong>Статус: </strong> <input type='checkbox' checked={task.isDone} /> <br></br>
               <strong>Дата создания задачи: </strong> {task.addedAt}
