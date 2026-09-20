@@ -1,48 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-
-// const tasks = null;
-const tasks = [
-  {
-    id: 1,
-    title: "Купить продукты на неделю",
-    isDone: false,
-    addedAt: "1 сентября",
-    priority: 2,
-  },
-  {
-    id: 2,
-    title: "Полить цветы",
-    isDone: true,
-    addedAt: "2 сентября",
-    priority: 0,
-  },
-  {
-    id: 3,
-    title: "Сходить на тренировку",
-    isDone: false,
-    addedAt: "3 сентября",
-    priority: 1,
-  },
-  {
-    id: 4,
-    title: "Срочно отправить рабочий отчет",
-    isDone: false,
-    addedAt: "4 сентября",
-    priority: 4,
-  },
-  {
-    id: 5,
-    title: "Заплатить за коммунальные услуги",
-    isDone: false,
-    addedAt: "3 сентября",
-    priority: 3,
-  },
-]
 
 export function App() {
 
   const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [tasks, setTasks] = useState(null);
+
+  useEffect(() => {
+    fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
+      headers: {
+        'api-key': 'd3a87c43-74d4-4047-baf4-7c9d4dbb9a5b'
+      }
+    }).then(res => res.json()).then(data => setTasks(data.data));
+  }, []);
 
   const getTaskColorPriority = (priority) => {
     switch (priority) {
@@ -71,15 +41,17 @@ export function App() {
 
   return (
     <div className='app-tasks'>
-      <button onClick={() => {setSelectedTaskId(null)}}>Сбросить выделение</button>
+      <button onClick={() => { setSelectedTaskId(null) }}>Сбросить выделение</button>
       {
         tasks.map(task => {
           return (
-            <div onClick={() => setSelectedTaskId(task.id)} className='app-task' style={{ background: getTaskColorPriority(task.priority), 
-                border: selectedTaskId === task.id ? '5px solid blue' : 'none'}}>
-              <strong>Заголовок: </strong> <span style={{ textDecorationLine: task.isDone ? 'line-through' : 'none' }}>{task.title}</span> <br></br>
-              <strong>Статус: </strong> <input type='checkbox' checked={task.isDone} /> <br></br>
-              <strong>Дата создания задачи: </strong> {task.addedAt}
+            <div key={task.id} onClick={() => setSelectedTaskId(task.id)} className='app-task' style={{
+              background: getTaskColorPriority(task.attributes.priority),
+              border: selectedTaskId === task.id ? '5px solid blue' : 'none'
+            }}>
+              <strong>Заголовок: </strong> <span style={{ textDecorationLine: task.attributes.status === 2 ? 'line-through' : 'none' }}>{task.attributes.title}</span> <br></br>
+              <strong>Статус: </strong> <input type='checkbox' defaultChecked={task.attributes.status === 2} /> <br></br>
+              <strong>Дата создания задачи: </strong> {new Date(task.attributes.addedAt).toLocaleDateString()}
             </div>
           )
         })
