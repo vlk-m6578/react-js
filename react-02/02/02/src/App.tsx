@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 
-// const tracks = null;
-// const tracks = [
-//   { id: 1, title: 'Musicfan soundtrack', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-//   { id: 2, title: 'Musicfan soundtrack instrumental', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3' }
-// ]
-
 export function App() {
-
-  const [selectedTrackId, setSelectedTrackId] = useState(1);
+  const [selectedTrackId, setSelectedTrackId] = useState(null);
+  const [selectedTrack, setSelectedTrack] = useState(null);
   const [tracks, setTracks] = useState(null);
 
   useEffect(() => {
-    console.log('ff');
     fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
       headers: {
-        'api-key': 'f8df4a9e-bfc0-409f-b79f-fb331b5ad033'
+        'api-key': 'a3d155c3-300c-46e0-9b83-0bf8f0a8601e'
       }
     }).then(res => res.json()).then(data => setTracks(data.data));
   }, []);
@@ -32,19 +25,36 @@ export function App() {
   return (
     <div>
       <h1>Musicfun Player</h1>
-      <button onClick={() => { setSelectedTrackId(null) }}>reset selection</button>
-      <ul>
-        {tracks.map(track => {
-          return (
-            <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid orange' : 'none' }}>
-              <div onClick={() => { setSelectedTrackId(track.id) }}>
-                {track.attributes.title}
-              </div>
-              <audio src={track.attributes.attachments[0].url} controls></audio>
-            </li>
-          )
-        })}
-      </ul>
+      <button onClick={() => { setSelectedTrackId(null); setSelectedTrack(null) }}>reset selection</button>
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <ul>
+          {tracks.map(track => {
+            return (
+              <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid orange' : 'none' }}>
+                <div onClick={() => {
+                  setSelectedTrackId(track.id);
+                  fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${track.id}`, {
+                    headers: {
+                      'api-key': 'a3d155c3-300c-46e0-9b83-0bf8f0a8601e'
+                    }
+                  }).then(res => res.json()).then(data => setSelectedTrack(data.data));
+                }}>
+                  {track.attributes.title}
+                </div>
+                <audio src={track.attributes.attachments[0].url} controls></audio>
+              </li>
+            )
+          })}
+        </ul>
+        {
+          selectedTrackId === selectedTrack?.id ?
+            <div>
+              <h3>Details</h3>
+              {selectedTrack.attributes.title}
+              <p>{!selectedTrack.attributes.lyrics ? 'no lyrics' : selectedTrack.attributes.lyrics}</p>
+            </div> : selectedTrackId === null ? 'Track is not selected' : <span>loading...</span>
+        }
+      </div>
     </div>
   )
 }
