@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import { InputTitle } from './assets/InputTitle';
 
 export function App() {
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
   const [tasks, setTasks] = useState(null);
+  const [boardId, setBoardId] = useState(null);
 
   useEffect(() => {
     fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {
@@ -13,6 +15,17 @@ export function App() {
       }
     }).then(res => res.json()).then(data => setTasks(data.data));
   }, []);
+
+  useEffect(() => {
+
+    if (!selectedTaskId) return;
+
+    fetch(`https://trelly.it-incubator.app/api/1.0/boards/${boardId}/tasks/${selectedTaskId}`, {
+      headers: {
+        'api-key': 'd3a87c43-74d4-4047-baf4-7c9d4dbb9a5b'
+      }
+    }).then(res => res.json()).then(data => setSelectedTask(data.data));
+  }, [selectedTaskId])
 
   const getTaskColorPriority = (priority) => {
     switch (priority) {
@@ -49,12 +62,7 @@ export function App() {
               return (
                 <div key={task.id} onClick={() => {
                   setSelectedTaskId(task.id);
-
-                  fetch(`https://trelly.it-incubator.app/api/1.0/boards/${task.attributes.boardId}/tasks/${task.id}`, {
-                    headers: {
-                      'api-key': 'd3a87c43-74d4-4047-baf4-7c9d4dbb9a5b'
-                    }
-                  }).then(res => res.json()).then(data => setSelectedTask(data.data));
+                  setBoardId(task.attributes.boardId);
                 }} className='app-task' style={{
                   background: getTaskColorPriority(task.attributes.priority),
                   border: selectedTaskId === task.id ? '5px solid blue' : 'none'
@@ -80,6 +88,8 @@ export function App() {
           }
         </div>
       </div>
+
+      <InputTitle />
     </div>
   )
 }
