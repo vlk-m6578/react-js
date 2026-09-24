@@ -15,7 +15,7 @@ export function App() {
 
   useEffect(() => {
 
-    if(!selectedTrackId) return;
+    if (!selectedTrackId) return;
 
     fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${selectedTrackId}`, {
       headers: {
@@ -52,14 +52,17 @@ export function App() {
             )
           })}
         </ul>
-        {
-          selectedTrackId === selectedTrack?.id ?
-            <div>
-              <h3>Details</h3>
-              {selectedTrack.attributes.title}
-              <p>{!selectedTrack.attributes.lyrics ? 'no lyrics' : selectedTrack.attributes.lyrics}</p>
-            </div> : selectedTrackId === null ? 'Track is not selected' : <span>loading...</span>
-        }
+        
+        <div>
+          <h3>Details</h3>
+          {
+            selectedTrackId === selectedTrack?.id ?
+              <div>
+                {selectedTrack.attributes.title}
+                <p>{!selectedTrack.attributes.lyrics ? 'no lyrics' : selectedTrack.attributes.lyrics}</p>
+              </div> : selectedTrackId === null ? 'Track is not selected' : <span>loading...</span>
+          }
+        </div>
       </div>
     </div>
   )
