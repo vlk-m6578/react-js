@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-export function TaskDetails() {
+export function TaskDetails({selectedTaskId, boardId}) {
   const [selectedTask, setSelectedTask] = useState(null);
-
-  const selectedTaskId = '4f310604-82b5-4afd-b9a4-ddf12dfac0a3';
-  const boardId = '13923117-72de-4788-a7f0-4c42f162a5ab';
 
   useEffect(() => {
 
-    if (!selectedTaskId) return;
+    if (!selectedTaskId) {
+      setSelectedTask(null);
+      return;
+    }
 
     fetch(`https://trelly.it-incubator.app/api/1.0/boards/${boardId}/tasks/${selectedTaskId}`, {
       headers: {

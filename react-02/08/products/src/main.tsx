@@ -1,11 +1,8 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { Header } from './components/Header'
 import { TasksList } from './components/TasksList'
 import { TaskDetails } from './components/TaskDetails'
-import { Footer } from './components/Footer'
-import { PageTitle } from './components/PageTitle'
 // import { App } from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
@@ -15,15 +12,20 @@ createRoot(document.getElementById('root')!).render(
 )
 
 function MainPage() {
+  const [selectedTaskId, setSelectedTaskId] = useState(null)
+  const [boardId, setBoardId] = useState(null)
+
+  const handleTaskSelect = (taskId, boardId) => {
+    setSelectedTaskId(taskId);
+    setBoardId(boardId);
+  }
+
   return (
     <div>
-      <Header />
-      <PageTitle />
       <div style={{ display: "flex", gap: "30px" }}>
-        <TasksList />
-        <TaskDetails />
+        <TasksList selectedTaskId={selectedTaskId} onTaskSelect={handleTaskSelect} />
+        <TaskDetails selectedTaskId={selectedTaskId} boardId={boardId}/>
       </div>
-      <Footer />
     </div>
   )
 }
