@@ -1,11 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { Header } from './components/Header';
-import { SidebarMenu } from './components/SidebarMenu';
-import { PageTitle } from './components/PageTitle';
 import { TracksList } from './components/TracksList';
 import { TrackDetail } from './components/TrackDetail';
-import { Footer } from './components/Footer';
+import { useState } from 'react';
 // import { App } from './App.tsx'
 
 const rootEl = document.getElementById('root');
@@ -15,16 +12,18 @@ reactRoot.render(
 )
 
 function MainPage() {
+  const [trackId, setTrackId] = useState(null);
+
+  const handleTrackSelect = (id) => {
+    setTrackId(id);
+  }
+
   return (
     <div>
-      <Header />
-      <SidebarMenu />
-      <PageTitle />
-      <div style={{display: 'flex'}}>
-        <TracksList />
-        <TrackDetail />
+      <div style={{ display: 'flex' }}>
+        <TracksList selectedTrackId={trackId} onTrackSelect={handleTrackSelect} />
+        <TrackDetail trackId={trackId} />
       </div>
-      <Footer />
     </div>
   )
 }

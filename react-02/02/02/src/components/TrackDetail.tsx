@@ -1,31 +1,34 @@
 import { useEffect, useState } from "react"
 
-export function TrackDetail() {
+export function TrackDetail({ trackId }) {
   const [selectedTrack, setSelectedTrack] = useState(null);
-
-  const selectedTrackId = '8c1c8624-b409-43cd-9ac3-10b15576feb9';
 
   useEffect(() => {
 
-    if (!selectedTrackId) return;
+    if (!trackId) {
+      setSelectedTrack(null);
+      return;
+    }
 
-    fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${selectedTrackId}`, {
+    fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${trackId}`, {
       headers: {
         'api-key': 'a3d155c3-300c-46e0-9b83-0bf8f0a8601e'
       }
     }).then(res => res.json()).then(data => setSelectedTrack(data.data));
-  }, [selectedTrackId])
+  }, [trackId])
 
   return (
     <div>
       <h3>Details</h3>
-      {
-        selectedTrackId === selectedTrack?.id ?
-          <div>
-            {selectedTrack.attributes.title}
-            <p>{!selectedTrack.attributes.lyrics ? 'no lyrics' : selectedTrack.attributes.lyrics}</p>
-          </div> : selectedTrackId === null ? 'Track is not selected' : <span>loading...</span>
-      }
+      {!selectedTrack && !trackId && 'Track is not selected'}
+      {!selectedTrack && trackId && 'Loading...'}
+      {selectedTrack && trackId && selectedTrack?.id !== trackId && 'Loading...'}
+      {selectedTrack && (
+        <div>
+          {selectedTrack.attributes.title}
+          <p>{!selectedTrack.attributes.lyrics ? 'no lyrics' : selectedTrack.attributes.lyrics}</p>
+        </div>
+      )}
     </div>
   )
 }
