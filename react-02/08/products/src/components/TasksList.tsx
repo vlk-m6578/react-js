@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
-import { TaskItem } from "./TaskItem";
+import { TaskItem, type GlobalTaskListItemJsonApiData } from "./TaskItem";
 
-export function TasksList({ selectedTaskId, onTaskSelect }) {
-  const [tasks, setTasks] = useState(null);
+type TasksListProps = {
+  selectedTaskId: string | null
+  onTaskSelect: (taskId: string | null, boardId: string | null) => void
+}
+
+export function TasksList({ selectedTaskId, onTaskSelect }: TasksListProps) {
+  const [tasks, setTasks] = useState<Array<GlobalTaskListItemJsonApiData> | null>(null);
 
   useEffect(() => {
     fetch('https://trelly.it-incubator.app/api/1.0/boards/tasks', {

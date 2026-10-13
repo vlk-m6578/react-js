@@ -1,6 +1,25 @@
-export function TaskItem({ task, onTaskSelect, isSelected }) {
+export type GlobalTaskListItemJsonApiData = {
+  id: string
+  attributes: GlobalTaskListItemDto
+}
 
-  const getTaskColorPriority = (priority) => {
+type GlobalTaskListItemDto = {
+  title: string
+  boardId: string
+  addedAt: string
+  status: number
+  priority: number
+}
+
+type TaskItemProps = {
+  task: GlobalTaskListItemJsonApiData
+  onTaskSelect: (taskId: string | null, boardId: string | null) => void
+  isSelected: boolean
+}
+
+export function TaskItem({ task, onTaskSelect, isSelected }: TaskItemProps) {
+
+  const getTaskColorPriority = (priority: number) => {
     switch (priority) {
       case 0:
         return '#ffffff'

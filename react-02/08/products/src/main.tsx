@@ -12,10 +12,10 @@ createRoot(document.getElementById('root')!).render(
 )
 
 function MainPage() {
-  const [selectedTaskId, setSelectedTaskId] = useState(null)
-  const [boardId, setBoardId] = useState(null)
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null)
+  const [boardId, setBoardId] = useState<string | null>(null)
 
-  const handleTaskSelect = (taskId, boardId) => {
+  const handleTaskSelect = (taskId: string | null, boardId: string | null) => {
     setSelectedTaskId(taskId);
     setBoardId(boardId);
   }
@@ -24,7 +24,7 @@ function MainPage() {
     <div>
       <div style={{ display: "flex", gap: "30px" }}>
         <TasksList selectedTaskId={selectedTaskId} onTaskSelect={handleTaskSelect} />
-        <TaskDetails selectedTaskId={selectedTaskId} boardId={boardId}/>
+        <TaskDetails selectedTaskId={selectedTaskId} boardId={boardId} />
       </div>
     </div>
   )
