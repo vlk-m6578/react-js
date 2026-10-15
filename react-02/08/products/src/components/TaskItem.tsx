@@ -1,15 +1,5 @@
-export type GlobalTaskListItemJsonApiData = {
-  id: string
-  attributes: GlobalTaskListItemDto
-}
+import type { GlobalTaskListItemJsonApiData } from "../api/api"
 
-type GlobalTaskListItemDto = {
-  title: string
-  boardId: string
-  addedAt: string
-  status: number
-  priority: number
-}
 
 type TaskItemProps = {
   task: GlobalTaskListItemJsonApiData
